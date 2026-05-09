@@ -840,8 +840,8 @@ const SEED = {
 function uid() { return Math.random().toString(36).slice(2, 10); }
 
 let db = load();
-ensureContestLink();
 let activeView = db._activeView || 'dashboard';
+ensureContestLink();
 let modalStack = [];      // { html, onSubmit }
 let bannerDismissed = false;
 let _dragHappened = false;
