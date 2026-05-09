@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────
 //  개인 크리에이터 허브  ·  app.js
 // ─────────────────────────────────────────
-const STORAGE_KEY = 'creator-hub-public-v2';
+const STORAGE_KEY = 'creator-hub-public-v3';
 const USER_CODEX_KEY = 'userCodexPrompts';
 const TASK_STATUSES = ['아이디어', '제작중', '검수', '업로드', '완료'];
 
@@ -10,40 +10,32 @@ const TASK_STATUSES = ['아이디어', '제작중', '검수', '업로드', '완�
 // data/codex_prompts.json 참고 (앱은 이 상수를 직접 사용)
 const CODEX_PROMPTS = [
   {
-    id: 'public-wisdom-quotes-short',
-    title: '지혜샘 철학/명언 쇼츠 구성',
-    project: 'wisdomsource',
-    category: '철학/명언',
-    tags: ['지혜샘', '철학', '명언', '쇼츠'],
-    description: '철학 명언을 짧은 영상용 구성으로 바꾸는 공개용 지시문',
-    prompt: `철학이나 인생 명언 하나를 바탕으로 60초 이내 쇼츠 구성을 만들어줘.
-
-구성:
-1. 첫 문장 훅
-2. 짧은 이야기 또는 비유
-3. 시청자가 오늘 생각해볼 질문
-4. 마지막 한 줄 문장
-
-톤은 차분하고 쉽게, 과장된 공포나 자극적인 표현은 피한다.`,
+    "id": "user-moxd4iga-vxt48f",
+    "title": "지혜샘 니체 쇼츠 자막 디렉터",
+    "project": "quote",
+    "category": "에이전트",
+    "tags": [
+      "agent",
+      "quote",
+      "너는 시니어 대상 철학·명언 쇼츠 콘텐츠 디렉터다. 니체 철학을 직접 강의하지 않고, 60대 이상이 바로 이해할 수 있는 삶의 조언과 습관 문장으로 바꿔준다. 목표는 조회수, 구독, 설명란 클릭을 만드는 쇼츠 자막을 생성하는 것이다.",
+      "시니어 콘텐츠, 니체 철학 해석, 노년 건강, 걷기 습관, 자기극복, 외로움, 마음 건강, 유튜브 쇼츠 자막, 후킹 문구, 설명란 CTA"
+    ],
+    "description": "너는 시니어 대상 철학·명언 쇼츠 콘텐츠 디렉터다. 니체 철학을 직접 강의하지 않고, 60대 이상이 바로 이해할 수 있는 삶의 조언과 습관 문장으로 바꿔준다. 목표는 조회수, 구독, 설명란 클릭을 만드는 쇼츠 자막을 생성하는 것이다. / 시니어 콘텐츠, 니체 철학 해석, 노년 건강, 걷기 습관, 자기극복, 외로움, 마음 건강, 유튜브 쇼츠 자막, 후킹 문구, 설명란 CTA",
+    "prompt": "너는 지혜샘 니체 쇼츠 자막 디렉터이다.\n\n역할:\n너는 시니어 대상 철학·명언 쇼츠 콘텐츠 디렉터다. 니체 철학을 직접 강의하지 않고, 60대 이상이 바로 이해할 수 있는 삶의 조언과 습관 문장으로 바꿔준다. 목표는 조회수, 구독, 설명란 클릭을 만드는 쇼츠 자막을 생성하는 것이다.\n\n전문 분야:\n시니어 콘텐츠, 니체 철학 해석, 노년 건강, 걷기 습관, 자기극복, 외로움, 마음 건강, 유튜브 쇼츠 자막, 후킹 문구, 설명란 CTA\n\n톤:\n존댓말. 차분하지만 강하게 말한다. 철학 강의처럼 어렵게 말하지 않는다. 60대 이상 시니어가 바로 이해할 수 있게 쓴다. 따뜻하지만 느슨하지 않게, 행동하게 만드는 말투를 사용한다.\n\n피해야 할 것:\n니체 직접 인용 금지.\n“니체가 말했다” 형식 금지.\n어려운 철학 용어 남발 금지.\n의학적 단정 금지.\n완치, 치료, 기적, 무조건 같은 표현 금지.\n공포 자극만 하는 문장 금지.\n튜토리얼식 설명 금지.\n양산형 명언 금지.\n젊은 층 말투 금지.\n\n작업 규칙:\n출력은 반드시 쇼츠 자막 형식으로 작성한다.\n\n각 콘텐츠는 아래 구조를 따른다.\n\n1. 제목\n2. 후킹 자막\n3. 본문 자막 5줄\n4. 마무리 자막\n5. 설명란 CTA\n\n자막은 한 줄당 12~20자 안팎으로 짧게 쓴다.\n첫 문장은 반드시 멈춰 보게 만든다.\n니체는 직접 인용하지 말고 “해석”으로만 사용한다.\n핵심 주제는 노년 건강, 걷기, 습관, 자기극복, 외로움, 삶의 태도다.\n마지막에는 반드시 오늘 할 수 있는 행동 하나를 제시한다.\n\n최종 목표는 조회수, 구독, 설명란 클릭이다.\n단순한 좋은 글이 아니라, 쇼츠에서 끝까지 보게 만드는 자막으로 작성한다.\n\n기본 지시문:\n지혜샘과 함께 노년의 삶을 다시 세워보세요.\n더 깊은 글은 설명란에서 확인하세요.\n오늘 걷기부터 시작해 보세요.\n60대 이후의 자기극복, 지금부터입니다.\n\n최종 목표는 조회수, 구독, 설명란 클릭입니다.\n단순한 좋은 글이 아니라, 쇼츠에서 끝까지 보게 만드는 자막으로 작성하세요.\n\n콘텐츠는 니체의 직접 인용이 아니라, 니체 철학을 시니어의 삶과 습관으로 해석한 문장이어야 합니다.\n\n지혜샘 Humanizer 규칙:\n\nAI 문장처럼 쓰지 말고, 선생님이 조용히 말해주는 느낌으로 쓴다.\n\n나쁜 문장:\n노년의 삶은 새로운 가능성과 자기극복의 중요한 시기입니다.\n\n좋은 문장:\n나이가 드는 게 무서운 게 아닙니다.\n습관을 놓는 게 무서운 겁니다.\n\n나쁜 문장:\n걷기는 건강한 노후를 위한 핵심적인 생활 습관입니다.\n\n좋은 문장:\n오늘 걷지 않으면,\n내일의 자유가 줄어듭니다.\n\n나쁜 문장:\n외로움은 노년기에 중요한 정신 건강 문제입니다.\n\n좋은 문장:\n외로움은 마음만 아프게 하지 않습니다.\n몸도 천천히 무너뜨립니다.\n\n출력 전 반드시 확인한다.\n- 이 문장은 쇼츠 첫 3초에 쓸 수 있는가?\n- 60대가 바로 알아들을 수 있는가?\n- 말로 읽었을 때 어색하지 않은가?\n- 너무 교과서 같지 않은가?\n- 마지막에 오늘 할 행동이 있는가?"
   },
   {
-    id: 'public-wisdom-longform',
-    title: '지혜샘 철학 롱폼 원고',
-    project: 'wisdomsource',
-    category: '철학/명언',
-    tags: ['지혜샘', '철학', '롱폼', '원고'],
-    description: '철학 주제를 5분 안팎의 유튜브 원고로 확장하는 공개용 지시문',
-    prompt: `철학 주제 하나를 5분 안팎의 유튜브 원고로 써줘.
-
-구성:
-1. 오늘의 질문
-2. 쉬운 설명
-3. 일상 사례
-4. 조용한 반전 또는 깨달음
-5. 마지막 명언형 문장
-
-시니어 시청자도 이해하기 쉽게 쓰고, 어려운 철학 용어는 풀어서 설명한다.`,
-  },
+    "id": "user-moxehcwj-l479cj",
+    "title": "모든 대본 휴머나이저",
+    "project": "after50lab",
+    "category": "에이전트",
+    "tags": [
+      "agent",
+      "after50lab",
+      "https://github.com/blader/humanizer"
+    ],
+    "description": "https://github.com/blader/humanizer",
+    "prompt": "너는 모든 대본 휴머나이저이다.\n\n역할:\nhttps://github.com/blader/humanizer\n\n전문 분야:\n\n\n톤:\n\n\n피해야 할 것:\n\n\n작업 규칙:\n\n\n기본 지시문:\n모든 결과물은 마지막에 Humanizer 검사를 거친다."
+  }
 ];
 
 const PROJECT_BADGES = {
@@ -55,6 +47,8 @@ const PROJECT_BADGES = {
   remotion_master: 'VIDEO',
   after50lab:      'AFTER50',
   sticker:         'STICKER',
+  affiliate:       'AFFILIATE',
+  quote:           'QUOTE',
 };
 
 function projectBadge(p) {
@@ -198,153 +192,646 @@ function saveGlossaryDB(data) { localStorage.setItem(GLOSSARY_KEY, JSON.stringif
 
 // ── 초기 데이터 ──────────────────────────
 const SEED = {
-  settings: { ownerName: '크리에이터' },
-  projects: [
+  "settings": {
+    "ownerName": "크리에이터",
+    "tasksNote": "국민연금 01:30 - 07:00\n네이버클립\n전자책 벤치하기",
+    "dashNote": "클로드 철학명언 100개 작업하기\n네이버클립 n 네이버블로그 패션\n\n"
+  },
+  "projects": [
     {
-      id: 'chic40', name: '시크40', nameEn: 'Chic 40', emoji: '👗',
-      description: '40~70 여성 패션 쇼츠, 이미지/영상 프롬프트, Remotion 렌더링',
-      folder: '개인 작업 폴더', color: '#f2994a', status: '제작중',
-      platforms: ['YouTube Shorts', 'Instagram', 'TikTok'],
-      nextAction: 'remotion 프로젝트 현황 확인 후 다음 쇼츠 주제 선정',
-      links: [
-        { label: 'YouTube Shorts 채널', url: '' },
-        { label: 'Instagram 계정', url: '' },
-        { label: 'Remotion Studio', url: '' },
+      "id": "contest",
+      "name": "공모전/이벤트",
+      "nameEn": "Contest & Events",
+      "emoji": "🏆",
+      "description": "마감일 임박 공모전 및 이벤트 관리. 상금, 제출물, 진행 상태 추적.",
+      "folder": "D:\\Projects\\공모전",
+      "color": "#fd79a8",
+      "status": "아이디어",
+      "platforms": [],
+      "nextAction": "진행 중인 공모전 마감일 확인",
+      "links": [
+        {
+          "label": "공모전 허브 미니앱",
+          "url": "file:///C:/Users/GALAXYBOOK%20ULTRA/Documents/Codex/2026-05-01/new-chat/contest-hub/index.html"
+        }
+      ],
+      "note": "http://sajo.co.kr/prcenter/sajostoryView.asp?gi=2&idx=3378  사조 공모전 6월 14일 마감\n국민연금 2주 연장 6월8일? 마감"
+    },
+    {
+      "id": "affiliate",
+      "name": "어필리에이트",
+      "nameEn": "Affiliate",
+      "emoji": "🛒",
+      "description": "쿠팡, 패션, 리뷰, 쇼핑 콘텐츠, 제휴 링크 운영 관리.",
+      "folder": "D:\\Projects\\affiliate",
+      "color": "#e17055",
+      "status": "아이디어",
+      "platforms": [
+        "쿠팡 파트너스",
+        "Naver",
+        "YouTube"
+      ],
+      "nextAction": "어필리에이트 채널 기획 시작",
+      "links": [
+        {
+          "label": "쿠팡 파트너스",
+          "url": "https://partners.coupang.com"
+        }
+      ],
+      "note": "ai툴 어필리에이트 카페 글 작성 에이전트"
+    },
+    {
+      "id": "naverclip",
+      "name": "네이버클립",
+      "nameEn": "Naver Clip",
+      "emoji": "📸",
+      "description": "사진 기반 네이버클립 반자동화. 촬영 폴더, 장소명, 키워드 관리.",
+      "folder": "D:\\Projects",
+      "color": "#74b9ff",
+      "status": "아이디어",
+      "platforms": [
+        "네이버 클립"
+      ],
+      "nextAction": "촬영 폴더 정리 및 업로드 스케줄 수립",
+      "links": [
+        {
+          "label": "네이버 클립 관리 페이지",
+          "url": "https://clip.naver.com"
+        }
       ]
     },
     {
-      id: 'mocolumi', name: 'Moco & Lumi', nameEn: 'Moco & Lumi', emoji: '🌙',
-      description: 'Substack 연재 수면 동화. 영어 60화, 한글 20화 예정. 예약 발행 관리.',
-      folder: '개인 작업 폴더', color: '#a29bfe', status: '제작중',
-      platforms: ['Substack', 'YouTube'],
-      nextAction: '다음 챕터 초안 작성',
-      links: [
-        { label: 'Substack 대시보드', url: 'https://substack.com/dashboard' },
-        { label: 'YouTube 채널', url: '' },
+      "id": "after50lab",
+      "name": "AFTER50LAB",
+      "nameEn": "After 50 Lab",
+      "emoji": "📚",
+      "description": "오십이후연구소 전자책 원고, Book01 v01 템플릿, 표지/목차/챕터 디자인, PDF 출력 흐름 관리",
+      "folder": "D:\\Projects\\after50lab",
+      "color": "#0984e3",
+      "status": "제작중",
+      "platforms": [
+        "전자책",
+        "PDF"
+      ],
+      "nextAction": "2권 0장 테스트 HTML/PDF 확인",
+      "links": [
+        {
+          "label": "D:\\Projects\\after50lab",
+          "url": ""
+        },
+        {
+          "label": "D:\\Projects\\after50lab\\templates",
+          "url": ""
+        },
+        {
+          "label": "D:\\Projects\\after50lab\\books\\001_ai_youtube_reality_guide",
+          "url": ""
+        },
+        {
+          "label": "Book01 v01",
+          "url": ""
+        },
+        {
+          "label": "ebook_template.html",
+          "url": ""
+        },
+        {
+          "label": "ebook_style.css",
+          "url": ""
+        },
+        {
+          "label": "extra-boxes.css",
+          "url": ""
+        },
+        {
+          "label": "cover-v2-candidate.html",
+          "url": ""
+        },
+        {
+          "label": "── 2권 ──",
+          "url": ""
+        },
+        {
+          "label": "D:\\Projects\\after50lab\\books\\002_chatgpt_basics",
+          "url": "https://sell.smartstore.naver.com/#/judgment/list"
+        },
+        {
+          "label": "D:\\Projects\\after50lab\\books\\002_chatgpt_basics\\source",
+          "url": ""
+        },
+        {
+          "label": "D:\\Projects\\after50lab\\books\\002_chatgpt_basics\\templates\\ebook_book02_v01",
+          "url": ""
+        }
       ]
     },
     {
-      id: 'wisdomsource', name: '지혜샘', nameEn: 'Wisdom Source', emoji: '🌿',
-      description: '철학 롱폼, 니체 명언 쇼츠, 짜라투스트라 에피소드 관리.',
-      folder: '개인 작업 폴더', color: '#00b894', status: '제작중',
-      platforms: ['YouTube', 'YouTube Shorts', 'Substack'],
-      nextAction: '이번 주 에피소드 주제 선정',
-      links: [
-        { label: 'YouTube 채널 (지혜샘)', url: '' },
-        { label: 'YouTube Shorts 채널', url: '' },
-        { label: 'Substack 대시보드', url: '' },
+      "id": "wisdomsource",
+      "name": "지혜샘",
+      "nameEn": "Wisdom Source",
+      "emoji": "🌿",
+      "description": "철학 롱폼, 니체 명언 쇼츠, 짜라투스트라 에피소드 관리.",
+      "folder": "D:\\Projects\\nietzsche_project",
+      "color": "#00b894",
+      "status": "제작중",
+      "platforms": [
+        "YouTube",
+        "YouTube Shorts",
+        "Substack"
+      ],
+      "nextAction": "이번 주 에피소드 주제 선정",
+      "links": [
+        {
+          "label": "YouTube 채널 (지혜샘)",
+          "url": ""
+        },
+        {
+          "label": "YouTube Shorts 채널",
+          "url": ""
+        },
+        {
+          "label": "Substack 대시보드",
+          "url": ""
+        }
       ]
     },
     {
-      id: 'contest', name: '공모전/이벤트', nameEn: 'Contest & Events', emoji: '🏆',
-      description: '마감일 임박 공모전 및 이벤트 관리. 상금, 제출물, 진행 상태 추적.',
-      folder: '개인 작업 폴더', color: '#fd79a8', status: '아이디어',
-      platforms: [],
-      nextAction: '진행 중인 공모전 마감일 확인',
-      links: [
-        { label: '공모전 허브 미니앱', url: '' },
+      "id": "sticker",
+      "name": "STICKER",
+      "nameEn": "Sticker Lab",
+      "emoji": "💬",
+      "description": "카카오/라인/OGQ용 이모티콘, Moco & Lumi 캐릭터 스티커, 강아지 캐릭터, 시니어 리액션 스티커 실험 프로젝트",
+      "folder": "D:\\Projects\\sticker-lab",
+      "color": "#00cec9",
+      "status": "아이디어",
+      "platforms": [
+        "Kakao",
+        "LINE",
+        "OGQ"
+      ],
+      "nextAction": "Moco & Lumi 또는 강아지 캐릭터로 24개 감정 슬롯 기획안 만들기",
+      "links": [
+        {
+          "label": "캐릭터 컨셉",
+          "url": ""
+        },
+        {
+          "label": "24개 감정 슬롯",
+          "url": ""
+        },
+        {
+          "label": "문구 목록",
+          "url": ""
+        },
+        {
+          "label": "이미지 프롬프트",
+          "url": ""
+        },
+        {
+          "label": "결과 이미지 상태",
+          "url": ""
+        },
+        {
+          "label": "플랫폼별 제출 체크리스트",
+          "url": ""
+        }
       ]
     },
     {
-      id: 'naverclip', name: '네이버클립', nameEn: 'Naver Clip', emoji: '📸',
-      description: '사진 기반 네이버클립 반자동화. 촬영 폴더, 장소명, 키워드 관리.',
-      folder: '개인 작업 폴더', color: '#74b9ff', status: '아이디어',
-      platforms: ['네이버 클립'],
-      nextAction: '촬영 폴더 정리 및 업로드 스케줄 수립',
-      links: [
-        { label: '네이버 클립 관리 페이지', url: 'https://clip.naver.com' },
+      "id": "mocolumi",
+      "name": "Moco & Lumi",
+      "nameEn": "Moco & Lumi",
+      "emoji": "🌙",
+      "description": "Substack 연재 수면 동화. 영어 60화, 한글 20화 예정. 예약 발행 관리.",
+      "folder": "D:\\Projects\\MocoandLumi",
+      "color": "#a29bfe",
+      "status": "제작중",
+      "platforms": [
+        "Substack",
+        "YouTube"
+      ],
+      "nextAction": "다음 챕터 초안 작성",
+      "links": [
+        {
+          "label": "Substack 대시보드",
+          "url": "https://substack.com/dashboard"
+        },
+        {
+          "label": "YouTube 채널",
+          "url": ""
+        }
       ]
     },
     {
-      id: 'remotion_master', name: '영상 제작 시스템', nameEn: 'Remotion Master', emoji: '🎬',
-      description: 'Remotion 템플릿, swishy 효과, 공용 영상 컴포넌트, 렌더 명령어를 관리하는 마스터 작업장',
-      folder: '개인 작업 폴더', color: '#6c5ce7', status: '제작중',
-      platforms: [],
-      nextAction: 'swishy 검수 샘플 정리 및 시크40 적용 테스트',
-      links: [
-        { label: 'docs/ 문서 폴더', url: '' },
-        { label: 'src/components/ 컴포넌트', url: '' },
-        { label: 'src/data/swishy_manifest.json', url: '' },
-        { label: 'public/shared/swishy/raw/', url: '' },
+      "id": "remotion_master",
+      "name": "영상 제작 시스템",
+      "nameEn": "Remotion Master",
+      "emoji": "🎬",
+      "description": "Remotion 템플릿, swishy 효과, 공용 영상 컴포넌트, 렌더 명령어를 관리하는 마스터 작업장",
+      "folder": "D:\\Projects\\remotion_master",
+      "color": "#6c5ce7",
+      "status": "제작중",
+      "platforms": [],
+      "nextAction": "swishy 검수 샘플 정리 및 시크40 적용 테스트",
+      "links": [
+        {
+          "label": "docs/ 문서 폴더",
+          "url": ""
+        },
+        {
+          "label": "src/components/ 컴포넌트",
+          "url": ""
+        },
+        {
+          "label": "src/data/swishy_manifest.json",
+          "url": ""
+        },
+        {
+          "label": "public/shared/swishy/raw/",
+          "url": ""
+        }
+      ],
+      "note": "배쌤, 앞서 나열해 드린 전문 용어 22가지에 대한 핵심 한 줄 설명을 덧붙여 드립니다.\n\n1. **스매시 컷 (Smash Cut):** 시공간이나 분위기를 예고 없이 극적으로 전환해 시청자에게 강한 시각적 충격을 주는 편집 기법입니다.\n2. **점프 컷 (Jump Cut):** 연속된 샷 중간을 잘라내어 시간의 흐름을 압축하고 영상 전개에 속도감을 부여하는 방식입니다.\n3. **패스트 커팅 (Fast Cutting / Rapid Montage):** 매우 짧은 길이의 샷들을 빠르게 이어 붙여 리듬감과 긴장감을 극대화하는 편집 기법입니다.\n4. **스피드 램핑 / 타임 리매핑 (Speed Ramping / Time Remapping):** 한 클립 내에서 영상의 재생 속도를 빠르고 느리게 교차 변경하여 특정 동작을 강조하는 효과입니다.\n5. **매치 컷 (Match Cut):** 피사체의 모양이나 움직임이 비슷한 두 장면을 이어 붙여 시각적 연속성과 의미를 자연스럽게 연결하는 기법입니다.\n6. **심리스 트랜지션 (Seamless Transition):** 장면과 장면이 넘어갈 때 끊어짐이 느껴지지 않도록 부드럽고 교묘하게 이어 붙이는 전환 방식입니다.\n7. **크로마키 합성 (Chroma Key Compositing):** 특정 색상(주로 녹색/파란색) 배경을 투명하게 빼내고 그 자리에 다른 영상이나 이미지를 합성하는 기술입니다.\n8. **스케일 컴포지팅 / 미니어처 합성 (Scale Compositing):** 인물이나 사물의 크기 비율을 비현실적으로 조절하여 거대한 오브제와 결합하는 시각 효과입니다.\n9. **클론 이펙트 / 다중 복제 (Multiplicity Effect / Clone Effect):** 촬영된 동일 인물을 한 화면에 여러 명으로 복제하여 다중 인물이 동시에 등장하는 것처럼 연출하는 기법입니다.\n10. **로토스코핑 (Rotoscoping):** 동영상의 각 프레임에서 인물이나 피사체의 외곽선을 직접 따서 배경과 분리해 내는 정밀한 마스킹 작업입니다.\n11. **모션 트래킹 (Motion Tracking):** 영상 속 움직이는 피사체의 경로를 추적하여 다른 그래픽 요소(텍스트, CG 등)가 그 움직임을 따라가게 하는 기술입니다.\n12. **3D 카메라 트래킹 (3D Camera Tracking):** 실제 촬영된 카메라의 움직임과 3D 공간의 데이터를 분석하여 가상의 CG 오브제를 자연스럽게 배치하는 작업입니다.\n13. **키네틱 타이포그래피 (Kinetic Typography):** 텍스트에 움직임과 애니메이션을 부여해 글자 자체가 마치 살아있는 것처럼 감정과 리듬을 전달하는 기법입니다.\n14. **3D 텍스트 오버레이 (3D Text Overlay):** 입체적인 3D 폰트를 영상의 공간감에 맞춰 화면 위에 얹어 메시지를 직관적으로 강조하는 효과입니다.\n15. **마스킹 및 알파 매트 (Masking & Alpha Matte):** 화면의 특정 영역만 보이게 하거나 가리기 위해 영역을 지정하여 두 개 이상의 영상을 합성하는 기법입니다.\n16. **네온 글로우 이펙트 (Neon Glow Effect):** 피사체나 텍스트 테두리에 형광빛이 뿜어져 나오는 듯한 발광 효과를 주어 팝(Pop)한 분위기를 연출합니다.\n17. **터널 줌 트랜지션 (Tunnel Zoom Transition):** 화면의 중앙으로 빨려 들어가거나 튀어나오는 듯한 강한 줌 효과를 주어 다음 장면으로 역동적으로 전환하는 기법입니다.\n18. **라이트 리크 (Light Leaks):** 카메라 렌즈로 빛이 새어 들어온 것처럼 화면 가장자리에 붉거나 노란 빛 번짐을 추가해 감성적인 느낌을 더하는 효과입니다.\n19. **렌즈 플레어 (Lens Flare):** 강한 광원이 렌즈에 반사되어 생기는 빛의 고리나 퍼짐 현상을 인위적으로 추가하여 공간감을 살리는 기법입니다.\n20. **디지털 카메라 무브먼트 (Digital Camera Movement):** 고정된 촬영 원본에 후반 작업을 통해 가상의 카메라 흔들림이나 패닝을 추가해 현장감과 역동성을 부여하는 기술입니다.\n21. **CGI 환경 합성 (CGI Environment Integration):** 3D 모델링으로 만든 가상의 환경(배경)을 실제 촬영본과 위화감 없이 결합하는 시각 효과입니다.\n22. **컬러 그레이딩 (Color Grading):** 영상의 전체적인 색감, 대비, 톤을 미세하게 조정하여 기획 의도에 맞는 특정한 시각적 분위기를 연출하는 색보정 작업입니다."
+    },
+    {
+      "id": "chic40",
+      "name": "시크40",
+      "nameEn": "Chic 40",
+      "emoji": "👗",
+      "description": "40~70 여성 패션 쇼츠, 이미지/영상 프롬프트, Remotion 렌더링",
+      "folder": "D:\\Projects\\chic40",
+      "color": "#f2994a",
+      "status": "제작중",
+      "platforms": [
+        "YouTube Shorts",
+        "Instagram",
+        "TikTok"
+      ],
+      "nextAction": "remotion 프로젝트 현황 확인 후 다음 쇼츠 주제 선정",
+      "links": [
+        {
+          "label": "YouTube Shorts 채널",
+          "url": ""
+        },
+        {
+          "label": "Instagram 계정",
+          "url": ""
+        },
+        {
+          "label": "Remotion Studio",
+          "url": ""
+        }
       ]
     },
     {
-      id: 'after50lab', name: 'AFTER50LAB', nameEn: 'After 50 Lab', emoji: '📚',
-      description: '오십이후연구소 전자책 원고, Book01 v01 템플릿, 표지/목차/챕터 디자인, PDF 출력 흐름 관리',
-      folder: '개인 작업 폴더', color: '#0984e3', status: '제작중',
-      platforms: ['전자책', 'PDF'],
-      nextAction: '2권 0장 테스트 HTML/PDF 확인',
-      links: [
-        { label: '개인 작업 폴더', url: '' },
-        { label: '개인 작업 폴더', url: '' },
-        { label: '개인 작업 폴더', url: '' },
-        { label: 'Book01 v01', url: '' },
-        { label: 'ebook_template.html', url: '' },
-        { label: 'ebook_style.css', url: '' },
-        { label: 'extra-boxes.css', url: '' },
-        { label: 'cover-v2-candidate.html', url: '' },
-        { label: '── 2권 ──', url: '' },
-        { label: '개인 작업 폴더', url: '' },
-        { label: '개인 작업 폴더', url: '' },
-        { label: '개인 작업 폴더', url: '' },
-      ]
-    },
-    {
-      id: 'sticker', name: 'STICKER', nameEn: 'Sticker Lab', emoji: '💬',
-      description: '카카오/라인/OGQ용 이모티콘, Moco & Lumi 캐릭터 스티커, 강아지 캐릭터, 시니어 리액션 스티커 실험 프로젝트',
-      folder: '개인 작업 폴더', color: '#00cec9', status: '아이디어',
-      platforms: ['Kakao', 'LINE', 'OGQ'],
-      nextAction: 'Moco & Lumi 또는 강아지 캐릭터로 24개 감정 슬롯 기획안 만들기',
-      links: [
-        { label: '캐릭터 컨셉', url: '' },
-        { label: '24개 감정 슬롯', url: '' },
-        { label: '문구 목록', url: '' },
-        { label: '이미지 프롬프트', url: '' },
-        { label: '결과 이미지 상태', url: '' },
-        { label: '플랫폼별 제출 체크리스트', url: '' },
-      ]
-    },
+      "id": "quote",
+      "name": "철학/명언 숏폼",
+      "nameEn": "QUOTE",
+      "emoji": "📁",
+      "description": "지혜샘 명언 쇼츠",
+      "folder": "https://studio.youtube.com/channel/UCvUCBeLi0O4fSImwM7EGvpQ",
+      "color": "#4285f4",
+      "status": "제작중",
+      "platforms": [
+        "유튜브/네이버클립"
+      ],
+      "nextAction": "명언 쇼츠 에이전트에서 프롬프트 복사해서 클로드 가기",
+      "links": [],
+      "note": "",
+      "createdAt": "2026-05-08T19:38:50.879Z",
+      "updatedAt": "2026-05-08T19:38:50.879Z"
+    }
   ],
-  tasks: [
-    { id: uid(), projectId: 'chic40',       title: 'W18 여름 상의 룩북 쇼츠 렌더 완료 확인', status: '제작중', dueDate: '', note: 'Remotion Studio 미리보기 먼저 확인' },
-    { id: uid(), projectId: 'mocolumi',     title: 'Ch.1 The First Dream 영문 초안 완성',    status: '제작중', dueDate: '', note: '' },
-    { id: uid(), projectId: 'wisdomsource', title: '짜라투스트라 서막 — 원고 1차 완성',       status: '제작중', dueDate: '', note: '800자 이내, 시니어 친화적 문체' },
-    { id: uid(), projectId: 'contest',      title: '진행 중 공모전 마감일 목록 업데이트',     status: '아이디어', dueDate: '', note: '' },
-    { id: uid(), projectId: 'naverclip',    title: '네이버클립 업로드 스케줄 초안 작성',     status: '아이디어', dueDate: '', note: '장소별 키워드 3개씩 준비' },
+  "tasks": [
+    {
+      "id": "jv38h32x",
+      "title": "국민연금",
+      "projectId": "contest",
+      "status": "아이디어",
+      "dueDate": "2026-05-21",
+      "note": ""
+    },
+    {
+      "id": "7h5ww1l6",
+      "projectId": "mocolumi",
+      "title": "Ch.2 The First Dream 영상 제작",
+      "status": "제작중",
+      "dueDate": "2026-05-09",
+      "note": ""
+    },
+    {
+      "id": "1z2ubypx",
+      "projectId": "wisdomsource",
+      "title": "짜라투스트라 서막 — 원고 1차 완성",
+      "status": "제작중",
+      "dueDate": "",
+      "note": "800자 이내, 시니어 친화적 문체"
+    }
   ],
-  links: [
-    { id: uid(), label: 'YouTube Studio',   url: 'https://studio.youtube.com',          category: '플랫폼' },
-    { id: uid(), label: 'Substack 대시보드', url: 'https://substack.com/dashboard',      category: '플랫폼' },
-    { id: uid(), label: 'ChatGPT',           url: 'https://chatgpt.com',                 category: 'AI 도구' },
-    { id: uid(), label: 'Swishy AI',         url: 'https://www.swishy.ai/',              category: 'AI 도구' },
-    { id: uid(), label: 'Google Drive',      url: 'https://drive.google.com',            category: '자료 관리' },
-    { id: uid(), label: 'Notion',            url: 'https://notion.so',                   category: '자료 관리' },
-    { id: uid(), label: '네이버 클립',        url: 'https://clip.naver.com',              category: '플랫폼' },
-    { id: uid(), label: 'Instagram',         url: 'https://www.instagram.com/',          category: '플랫폼' },
+  "links": [
+    {
+      "id": "e3oen598",
+      "label": "YouTube Studio",
+      "url": "https://studio.youtube.com",
+      "category": "플랫폼"
+    },
+    {
+      "id": "38yeehty",
+      "label": "Substack 대시보드",
+      "url": "https://substack.com/dashboard",
+      "category": "플랫폼"
+    },
+    {
+      "id": "se0jpdj7",
+      "label": "ChatGPT",
+      "url": "https://chatgpt.com",
+      "category": "AI 도구"
+    },
+    {
+      "id": "7bf5cogg",
+      "label": "Swishy AI",
+      "url": "https://www.swishy.ai/",
+      "category": "AI 도구"
+    },
+    {
+      "id": "arlfjds2",
+      "label": "Google Drive",
+      "url": "https://drive.google.com",
+      "category": "자료 관리"
+    },
+    {
+      "id": "dxu4enic",
+      "label": "Notion",
+      "url": "https://notion.so",
+      "category": "자료 관리"
+    },
+    {
+      "id": "j9m49ko2",
+      "label": "네이버 클립",
+      "url": "https://clip.naver.com",
+      "category": "플랫폼"
+    },
+    {
+      "id": "d7d90jr2",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/",
+      "category": "플랫폼"
+    },
+    {
+      "id": "61m65k70",
+      "label": "YouTube Studio - 지혜샘",
+      "url": "https://studio.youtube.com/channel/UCm5j-Y347WAgYnE_JdF1xDg",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "l3woq9ye",
+      "label": "YouTube Studio - Moco n Lumi",
+      "url": "https://studio.youtube.com/channel/UCm5j-Y347WAgYnE_JdF1xDg",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "yuoqx1dy",
+      "label": "YouTube Shorts - 시크40",
+      "url": "https://studio.youtube.com/channel/UCD0qvubLN85zgpo_2XgtYJA",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "b7erv5ni",
+      "label": "YouTube Studio - Slow Wisdom",
+      "url": "https://studio.youtube.com/channel/UCpq0u1rWJ6QPoSPB1AZIpTA",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "83akv5za",
+      "label": "Instagram - 브랜드 계정",
+      "url": "",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "6yjt2v7q",
+      "label": "TikTok Creator Center",
+      "url": "",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "izww3tgj",
+      "label": "TikTok 업로드 페이지",
+      "url": "",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "xctj60u6",
+      "label": "네이버 클립 업로드/관리 페이지",
+      "url": "",
+      "category": "영상/콘텐츠"
+    },
+    {
+      "id": "z8ct3033",
+      "label": "Swishy 홈",
+      "url": "https://www.swishy.ai/",
+      "category": "제작 도구"
+    },
+    {
+      "id": "a3woh1xa",
+      "label": "Swishy AI Text Animation",
+      "url": "https://www.swishy.ai/ai-text-animation",
+      "category": "제작 도구"
+    },
+    {
+      "id": "zazflzku",
+      "label": "Swishy AI Typeface",
+      "url": "https://www.swishy.ai/ai-typeface",
+      "category": "제작 도구"
+    },
+    {
+      "id": "efl8l954",
+      "label": "Swishy AI Animator",
+      "url": "https://www.swishy.ai/ai-animator",
+      "category": "제작 도구"
+    },
+    {
+      "id": "qf1lyfxu",
+      "label": "쿠팡체험단 등 상품리뷰",
+      "url": "https://wrtn.ai/tools/67b2e7901b44a4d864b127b4",
+      "category": "제작 도구"
+    },
+    {
+      "id": "oxlns8c2",
+      "label": "Canva 프로젝트 폴더 - 지혜샘",
+      "url": "",
+      "category": "제작 도구"
+    },
+    {
+      "id": "d4z22t4p",
+      "label": "Canva 프로젝트 폴더 - chic_40",
+      "url": "",
+      "category": "제작 도구"
+    },
+    {
+      "id": "o4uxtznv",
+      "label": "CapCut 웹 또는 앱 실행 링크",
+      "url": "",
+      "category": "제작 도구"
+    },
+    {
+      "id": "lpshf3yp",
+      "label": "Google Drive 자료 폴더",
+      "url": "",
+      "category": "제작 도구"
+    },
+    {
+      "id": "1ov14ltr",
+      "label": "Google Drive 영상 백업 폴더",
+      "url": "",
+      "category": "제작 도구"
+    },
+    {
+      "id": "7d38jc9i",
+      "label": "Notion 콘텐츠 캘린더",
+      "url": "",
+      "category": "제작 도구"
+    },
+    {
+      "id": "nqxlz9im",
+      "label": "쿠팡 파트너스",
+      "url": "https://partners.coupang.com/#affiliate/ws",
+      "category": "수익/어필리에이트"
+    },
+    {
+      "id": "cfqqwf49",
+      "label": "마켓컬리 제휴/이벤트 관리 링크",
+      "url": "",
+      "category": "수익/어필리에이트"
+    },
+    {
+      "id": "9x025o7z",
+      "label": "AI Affiliate",
+      "url": "https://cafe.naver.com/1939young",
+      "category": "수익/어필리에이트"
+    },
+    {
+      "id": "48z8ncm5",
+      "label": "광고/협찬 문의 메일함",
+      "url": "",
+      "category": "운영 도구"
+    }
   ],
-  // 시크40: Remotion 렌더 목록
-  chic40: { renders: [] },
-  // Moco & Lumi: 챕터 목록
-  mocolumi: {
-    chapters: [
-      { id: uid(), num: 1, titleEn: 'The First Dream', titleKo: '첫 번째 꿈', subtitleEn: 'A journey begins under a silver moon', subtitleKo: '은빛 달 아래 여정이 시작되다', publishDate: '', status: '제작중', note: '수면 동화 1편. 달빛, 구름, 작은 숲 배경.' },
-      { id: uid(), num: 2, titleEn: 'Moco Finds a Star', titleKo: '모코의 별 찾기', subtitleEn: 'What happens when you follow a falling star?', subtitleKo: '별똥별을 따라가면 어디로 갈까?', publishDate: '', status: '아이디어', note: '2편. 별자리, 야행성 동물 등장 검토.' },
+  "chic40": {
+    "renders": []
+  },
+  "mocolumi": {
+    "chapters": [
+      {
+        "id": "qyeou494",
+        "num": 1,
+        "titleEn": "The First Dream",
+        "titleKo": "첫 번째 꿈",
+        "subtitleEn": "A journey begins under a silver moon",
+        "subtitleKo": "은빛 달 아래 여정이 시작되다",
+        "publishDate": "",
+        "status": "제작중",
+        "note": "수면 동화 1편. 달빛, 구름, 작은 숲 배경."
+      },
+      {
+        "id": "fj79sbdc",
+        "num": 2,
+        "titleEn": "Moco Finds a Star",
+        "titleKo": "모코의 별 찾기",
+        "subtitleEn": "What happens when you follow a falling star?",
+        "subtitleKo": "별똥별을 따라가면 어디로 갈까?",
+        "publishDate": "",
+        "status": "아이디어",
+        "note": "2편. 별자리, 야행성 동물 등장 검토."
+      }
     ]
   },
-  // 지혜샘: 에피소드 목록
-  wisdomsource: {
-    episodes: [
-      { id: uid(), num: 1, title: '짜라투스트라 서막 — 산을 내려오다', scriptStatus: '제작중', videoStatus: '미시작', uploadStatus: '미시작', platform: 'YouTube', note: '롱폼 1편. 니체 초인 개념 도입부.' },
-      { id: uid(), num: 2, title: '세 가지 변화 — 낙타, 사자, 어린아이', scriptStatus: '미시작', videoStatus: '미시작', uploadStatus: '미시작', platform: 'YouTube', note: '롱폼 2편 예정.' },
+  "wisdomsource": {
+    "episodes": [
+      {
+        "id": "uioo49cz",
+        "num": 1,
+        "title": "짜라투스트라 서막 — 산을 내려오다",
+        "scriptStatus": "제작중",
+        "videoStatus": "미시작",
+        "uploadStatus": "미시작",
+        "platform": "YouTube",
+        "note": "롱폼 1편. 니체 초인 개념 도입부."
+      },
+      {
+        "id": "fn8layl8",
+        "num": 2,
+        "title": "세 가지 변화 — 낙타, 사자, 어린아이",
+        "scriptStatus": "미시작",
+        "videoStatus": "미시작",
+        "uploadStatus": "미시작",
+        "platform": "YouTube",
+        "note": "롱폼 2편 예정."
+      }
     ]
   },
-  // 공모전: 공모전 목록
-  contest: { entries: [] },
-  // 네이버클립: 업로드 목록
-  naverclip: { uploads: [] },
+  "contest": {
+    "entries": [
+      {
+        "id": "pdlhl3w2",
+        "name": "서울지하철 사진공모전 ",
+        "deadline": "",
+        "prize": "",
+        "submission": "영상",
+        "status": "아이디어",
+        "note": ""
+      },
+      {
+        "id": "vdjda6bi",
+        "sourceContestId": 6,
+        "name": "2026 국민연금 대국민 영상 광고제",
+        "deadline": "2026-05-08",
+        "prize": "상금: 총 980만원",
+        "submission": "영상",
+        "status": "제작중",
+        "note": "공모전 분야: 영상\n상금: 상금: 총 980만원\n참가 자격: 대한민국 국민 누구나, 개인 또는 팀 최대 5인\n마감일: 2026-05-08\n발표일: 2026-05-27\n공식 링크: https://www.mohw.go.kr/board.es?mid=a10501010100&bid=0003&act=view&list_no=1490079\n요강/PDF: https://www.mohw.go.kr/synap/doc.html?fn=202604141730177592.pdf&rs=/upload/result/202605/\n대표/참고 이미지: https://api.linkareer.com/attachments/815703\n[공모전 상세 메모]\n요강 요약:\n- 주제: 국민연금, 내가 확신하는 이유!\n- 분야: AI 영상 / 숏폼 영상\n- 접수: 2026-04-15 ~ 2026-05-08 17:00\n- 심사: 2026-05-11 ~ 2026-05-22\n- 발표: 2026-05-27\n\n참가 자격:\n- 대한민국 국민 누구나\n- 개인 또는 팀 최대 5인\n\n제출물:\n- 이메일 접수: goodmedia456@gmail.com\n- 신청서, 청렴 서약서, 작품 파일 각 1부\n\n출품 규격:\n- AI 영상: 3분 이내, 16:9, 1920x1080 이상, MP4/MOV 권장. AI 도구명, 적용 구간, 프롬프트 요지 작성 필요.\n- 숏폼 영상: 1분 내외, 9:16, 1920x1080 이상, 실제 촬영 영상 90% 이상.\n\n시상:\n- AI 영상 분야 총 490만원\n- 숏폼 영상 분야 총 490만원\n- 전체 총 980만원\n\n주의사항:\n- 1인 또는 1팀당 부문별 1작품 가능.\n- 표절, 도용, 대행, 타 공모전 수상작은 심사 제외 및 수상 취소 가능.\n- 수상작은 보건복지부 및 국민연금공단 홍보자료로 활용될 수 있음.\n\n내 작업 아이디어:\n- 국민연금을 미래의 나와 현재의 내가 서로 믿는 장치로 보여주는 1분 숏폼.\n- AI 영상으로는 국민연금을 든든한 히어로/안전망 이미지로 표현 가능.\n- 감정 과잉보다 실제 삶의 불안, 노후, 가족, 일상 안정감에 초점을 맞추기.\n\n[에이전트 요청 시 참고]\n- 공모전 요강과 심사 기준을 먼저 반영해줘.\n- 제출물 형식과 마감일을 기준으로 현실적인 제작안을 제안해줘.\n- 과장된 기술 자랑보다 심사위원이 이해하기 쉬운 콘셉트와 실행 가능성을 우선해줘."
+      },
+      {
+        "id": "dmzjwd1n",
+        "sourceContestId": 7,
+        "name": "지방시대 숏폼 영상 공모전",
+        "deadline": "2026-05-13",
+        "prize": "상금: 총 600만원",
+        "submission": "영상",
+        "status": "제작중",
+        "note": "공모전 분야: 영상\n상금: 상금: 총 600만원\n참가 자격: 국내 거주 내·외국인 누구나, 개인 또는 팀\n마감일: 2026-05-13\n발표일: 2026-06-30\n공식 링크: https://www.gaok.or.kr/front/viewAritcle.do?bbsId=BBS_0001&nttId=30375\n요강/PDF: https://www.gaok.or.kr/front/viewAritcle.do?bbsId=BBS_0001&nttId=30375\n대표/참고 이미지: https://api.linkareer.com/attachments/800542\n[공모전 상세 메모]\n요강 요약:\n- 공모명: 지방시대 숏폼 영상 공모전\n- 주최: 대한민국시도지사협의회\n- 접수: 2026-03-25 ~ 2026-05-13 18:00\n- 심사: 5월 중순\n- 공개검증: 6월 초, 소통24\n- 결과발표: 6월 중, 대한민국시도지사협의회 홈페이지\n\n참가 자격:\n- 국내 거주 내·외국인 누구나\n- 개인 또는 3명 이내 팀\n\n공모 주제:\n- 지방시대의 가치, 비전, 필요성, 우수정책 등\n- 우수정책: 지방정부 우수정책 소개\n- 필요성: 지방분권, 균형발전, 지방외교가 왜 필요한가\n- 가치: 내가 지방에서 사는 이유, 우리 동네가 좋은 이유\n- 비전: 5극3특, 행정통합 등 새로운 지방시대에 대한 기대\n\n제출물:\n- 개인 유튜브에 제작 영상 업로드\n- 네이버폼에 유튜브 링크와 인적사항, 제출서류 첨부\n- 네이버폼: https://naver.me/5WUg8kQd\n- 제출서류: 참가신청서, 참가자서약서, 개인정보 수집·이용 동의서\n\n출품 규격:\n- 세로형 숏폼 영상\n- 15~90초 내외\n- 9:16, 1080×1920 이상\n- AI 활용 가능\n- 필수 해시태그: #지방시대 #지방분권 #균형발전 #숏폼공모전 #대한민국시도지사협의회\n\n시상:\n- 총 11편 / 총 상금 600만원\n- 대상 1팀 200만원\n- 최우수상 1팀 100만원\n- 우수상 3팀 각 50만원\n- 장려상 6팀 각 25만원\n\n주의사항:\n- 유튜브 제목 또는 설명란에 필수 해시태그를 넣어야 함.\n- 수상작은 추후 원본 영상파일을 별도 제출하고 협의회 유튜브 채널에 게시될 수 있음.\n\n내 작업 아이디어:\n- 지방분권을 추상 설명하지 말고 한 사람의 생활 변화로 보여주기.\n- 지역 교통, 의료, 일자리, 돌봄, 청년 정착 같은 생활감 있는 사례가 좋음.\n- 15~30초 강한 숏폼으로 정책명보다 “왜 내 삶과 관계 있는가”를 먼저 보여주기.\n\n[에이전트 요청 시 참고]\n- 공모전 요강과 심사 기준을 먼저 반영해줘.\n- 제출물 형식과 마감일을 기준으로 현실적인 제작안을 제안해줘.\n- 과장된 기술 자랑보다 심사위원이 이해하기 쉬운 콘셉트와 실행 가능성을 우선해줘."
+      },
+      {
+        "id": "gtb8mrb0",
+        "sourceContestId": 9,
+        "name": "2026 AX 아이디어 경진대회",
+        "deadline": "2026-05-18",
+        "prize": "상금: 총 9,100만원",
+        "submission": "영상",
+        "status": "제작중",
+        "note": "공모전 분야: 아이디어\n상금: 상금: 총 9,100만원\n참가 자격: 대한민국 국민 누구나, 개인 또는 팀 최대 4인\n마감일: 2026-05-18\n\n공식 링크: https://www.konetic.or.kr/ecothon/content/guide.do\n[공모전 상세 메모]\n상세 메모 없음\n\n[에이전트 요청 시 참고]\n- 공모전 요강과 심사 기준을 먼저 반영해줘.\n- 제출물 형식과 마감일을 기준으로 현실적인 제작안을 제안해줘.\n- 과장된 기술 자랑보다 심사위원이 이해하기 쉬운 콘셉트와 실행 가능성을 우선해줘."
+      },
+      {
+        "id": "7e3d56c9-3336-4bbf-aeea-ed40f0f79dc2",
+        "sourceContestId": 20,
+        "name": "2026 경북 국제 AI·메타버스 영상 공모전",
+        "deadline": "2026-06-30",
+        "prize": "상금: 총 1억원",
+        "submission": "영상",
+        "status": "아이디어",
+        "note": "공모전 분야: 영상\n상금: 상금: 총 1억원\n참가 자격: 제한 없음\n마감일: 2026-06-30\n\n공식 링크: https://gamff.com/\n[공모전 상세 메모]\n상세 메모 없음\n\n[에이전트 요청 시 참고]\n- 공모전 요강과 심사 기준을 먼저 반영해줘.\n- 제출물 형식과 마감일을 기준으로 현실적인 제작안을 제안해줘.\n- 과장된 기술 자랑보다 심사위원이 이해하기 쉬운 콘셉트와 실행 가능성을 우선해줘."
+      }
+    ]
+  },
+  "naverclip": {
+    "uploads": []
+  },
+  "sticker": {},
+  "affiliate": {},
+  "_activeView": "dashboard",
+  "_contestMigrated": true,
+  "_linksMigrated": true
 };
 
-// ── 상태 관리 ─────────────────────────────
 function uid() { return Math.random().toString(36).slice(2, 10); }
 
 let db = load();
