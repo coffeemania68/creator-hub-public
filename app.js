@@ -1,16 +1,51 @@
 // ─────────────────────────────────────────
 //  개인 크리에이터 허브  ·  app.js
 // ─────────────────────────────────────────
-const STORAGE_KEY = 'creator-hub-public-v1';
+const STORAGE_KEY = 'creator-hub-public-v2';
 const USER_CODEX_KEY = 'userCodexPrompts';
 const TASK_STATUSES = ['아이디어', '제작중', '검수', '업로드', '완료'];
 
 // ── 명령어 보관함 데이터 ─────────────────────
 // 새 프롬프트 추가: 이 배열에 항목을 추가하면 바로 반영됩니다.
 // data/codex_prompts.json 참고 (앱은 이 상수를 직접 사용)
-const CODEX_PROMPTS = [];
+const CODEX_PROMPTS = [
+  {
+    id: 'public-wisdom-quotes-short',
+    title: '지혜샘 철학/명언 쇼츠 구성',
+    project: 'wisdomsource',
+    category: '철학/명언',
+    tags: ['지혜샘', '철학', '명언', '쇼츠'],
+    description: '철학 명언을 짧은 영상용 구성으로 바꾸는 공개용 지시문',
+    prompt: `철학이나 인생 명언 하나를 바탕으로 60초 이내 쇼츠 구성을 만들어줘.
 
-// Public project badge text
+구성:
+1. 첫 문장 훅
+2. 짧은 이야기 또는 비유
+3. 시청자가 오늘 생각해볼 질문
+4. 마지막 한 줄 문장
+
+톤은 차분하고 쉽게, 과장된 공포나 자극적인 표현은 피한다.`,
+  },
+  {
+    id: 'public-wisdom-longform',
+    title: '지혜샘 철학 롱폼 원고',
+    project: 'wisdomsource',
+    category: '철학/명언',
+    tags: ['지혜샘', '철학', '롱폼', '원고'],
+    description: '철학 주제를 5분 안팎의 유튜브 원고로 확장하는 공개용 지시문',
+    prompt: `철학 주제 하나를 5분 안팎의 유튜브 원고로 써줘.
+
+구성:
+1. 오늘의 질문
+2. 쉬운 설명
+3. 일상 사례
+4. 조용한 반전 또는 깨달음
+5. 마지막 명언형 문장
+
+시니어 시청자도 이해하기 쉽게 쓰고, 어려운 철학 용어는 풀어서 설명한다.`,
+  },
+];
+
 const PROJECT_BADGES = {
   chic40:          'CHIC40',
   mocolumi:        'MOCO',
@@ -131,7 +166,7 @@ const REMOTION_GLOSSARY = [
     phrase: '렌더 명령어를 만들고 싶다',
     term: 'npx remotion render',
     codexExpr: 'npx remotion render src/index.ts {Composition명} --props-file data/{파일명}.json --codec h264 --output outputs/{경로}',
-    pattern: `cd /d D:\\Projects\\chic40\\remotion\\chic40-shorts\nnpx remotion render src/index.ts Chic40SevenLooks \\\n  --props-file data/chic40_props.json \\\n  --codec h264 \\\n  --output outputs/result.mp4`,
+    pattern: `cd /d 개인 작업 폴더`,
     caution: 'Windows에서 cd는 백슬래시, remotion 인자 경로는 슬래시. --props-file 경로는 프로젝트 루트 기준 상대경로.',
     category: '렌더',
   },
@@ -168,7 +203,7 @@ const SEED = {
     {
       id: 'chic40', name: '시크40', nameEn: 'Chic 40', emoji: '👗',
       description: '40~70 여성 패션 쇼츠, 이미지/영상 프롬프트, Remotion 렌더링',
-      folder: 'D:\\Projects\\chic40', color: '#f2994a', status: '제작중',
+      folder: '개인 작업 폴더', color: '#f2994a', status: '제작중',
       platforms: ['YouTube Shorts', 'Instagram', 'TikTok'],
       nextAction: 'remotion 프로젝트 현황 확인 후 다음 쇼츠 주제 선정',
       links: [
@@ -180,7 +215,7 @@ const SEED = {
     {
       id: 'mocolumi', name: 'Moco & Lumi', nameEn: 'Moco & Lumi', emoji: '🌙',
       description: 'Substack 연재 수면 동화. 영어 60화, 한글 20화 예정. 예약 발행 관리.',
-      folder: 'D:\\Projects\\MocoandLumi', color: '#a29bfe', status: '제작중',
+      folder: '개인 작업 폴더', color: '#a29bfe', status: '제작중',
       platforms: ['Substack', 'YouTube'],
       nextAction: '다음 챕터 초안 작성',
       links: [
@@ -191,7 +226,7 @@ const SEED = {
     {
       id: 'wisdomsource', name: '지혜샘', nameEn: 'Wisdom Source', emoji: '🌿',
       description: '철학 롱폼, 니체 명언 쇼츠, 짜라투스트라 에피소드 관리.',
-      folder: 'D:\\Projects\\nietzsche_project', color: '#00b894', status: '제작중',
+      folder: '개인 작업 폴더', color: '#00b894', status: '제작중',
       platforms: ['YouTube', 'YouTube Shorts', 'Substack'],
       nextAction: '이번 주 에피소드 주제 선정',
       links: [
@@ -203,7 +238,7 @@ const SEED = {
     {
       id: 'contest', name: '공모전/이벤트', nameEn: 'Contest & Events', emoji: '🏆',
       description: '마감일 임박 공모전 및 이벤트 관리. 상금, 제출물, 진행 상태 추적.',
-      folder: 'D:\\Projects\\공모전', color: '#fd79a8', status: '아이디어',
+      folder: '개인 작업 폴더', color: '#fd79a8', status: '아이디어',
       platforms: [],
       nextAction: '진행 중인 공모전 마감일 확인',
       links: [
@@ -213,7 +248,7 @@ const SEED = {
     {
       id: 'naverclip', name: '네이버클립', nameEn: 'Naver Clip', emoji: '📸',
       description: '사진 기반 네이버클립 반자동화. 촬영 폴더, 장소명, 키워드 관리.',
-      folder: 'D:\\Projects', color: '#74b9ff', status: '아이디어',
+      folder: '개인 작업 폴더', color: '#74b9ff', status: '아이디어',
       platforms: ['네이버 클립'],
       nextAction: '촬영 폴더 정리 및 업로드 스케줄 수립',
       links: [
@@ -223,7 +258,7 @@ const SEED = {
     {
       id: 'remotion_master', name: '영상 제작 시스템', nameEn: 'Remotion Master', emoji: '🎬',
       description: 'Remotion 템플릿, swishy 효과, 공용 영상 컴포넌트, 렌더 명령어를 관리하는 마스터 작업장',
-      folder: 'D:\\Projects\\remotion_master', color: '#6c5ce7', status: '제작중',
+      folder: '개인 작업 폴더', color: '#6c5ce7', status: '제작중',
       platforms: [],
       nextAction: 'swishy 검수 샘플 정리 및 시크40 적용 테스트',
       links: [
@@ -236,28 +271,28 @@ const SEED = {
     {
       id: 'after50lab', name: 'AFTER50LAB', nameEn: 'After 50 Lab', emoji: '📚',
       description: '오십이후연구소 전자책 원고, Book01 v01 템플릿, 표지/목차/챕터 디자인, PDF 출력 흐름 관리',
-      folder: 'D:\\Projects\\after50lab', color: '#0984e3', status: '제작중',
+      folder: '개인 작업 폴더', color: '#0984e3', status: '제작중',
       platforms: ['전자책', 'PDF'],
       nextAction: '2권 0장 테스트 HTML/PDF 확인',
       links: [
-        { label: 'D:\\Projects\\after50lab', url: '' },
-        { label: 'D:\\Projects\\after50lab\\templates', url: '' },
-        { label: 'D:\\Projects\\after50lab\\books\\001_ai_youtube_reality_guide', url: '' },
+        { label: '개인 작업 폴더', url: '' },
+        { label: '개인 작업 폴더', url: '' },
+        { label: '개인 작업 폴더', url: '' },
         { label: 'Book01 v01', url: '' },
         { label: 'ebook_template.html', url: '' },
         { label: 'ebook_style.css', url: '' },
         { label: 'extra-boxes.css', url: '' },
         { label: 'cover-v2-candidate.html', url: '' },
         { label: '── 2권 ──', url: '' },
-        { label: 'D:\\Projects\\after50lab\\books\\002_chatgpt_basics', url: '' },
-        { label: 'D:\\Projects\\after50lab\\books\\002_chatgpt_basics\\source', url: '' },
-        { label: 'D:\\Projects\\after50lab\\books\\002_chatgpt_basics\\templates\\ebook_book02_v01', url: '' },
+        { label: '개인 작업 폴더', url: '' },
+        { label: '개인 작업 폴더', url: '' },
+        { label: '개인 작업 폴더', url: '' },
       ]
     },
     {
       id: 'sticker', name: 'STICKER', nameEn: 'Sticker Lab', emoji: '💬',
       description: '카카오/라인/OGQ용 이모티콘, Moco & Lumi 캐릭터 스티커, 강아지 캐릭터, 시니어 리액션 스티커 실험 프로젝트',
-      folder: 'D:\\Projects\\sticker-lab', color: '#00cec9', status: '아이디어',
+      folder: '개인 작업 폴더', color: '#00cec9', status: '아이디어',
       platforms: ['Kakao', 'LINE', 'OGQ'],
       nextAction: 'Moco & Lumi 또는 강아지 캐릭터로 24개 감정 슬롯 기획안 만들기',
       links: [
@@ -1362,11 +1397,11 @@ function naverclipView(p) {
 
 function remotionMasterView(p) {
   const keyPaths = [
-    'D:\\Projects\\remotion_master',
-    'D:\\Projects\\remotion_master\\docs',
-    'D:\\Projects\\remotion_master\\src\\components',
-    'D:\\Projects\\remotion_master\\src\\data\\swishy_manifest.json',
-    'D:\\Projects\\remotion_master\\public\\shared\\swishy\\raw',
+    '개인 작업 폴더',
+    '개인 작업 폴더',
+    '개인 작업 폴더',
+    '개인 작업 폴더',
+    '개인 작업 폴더',
   ];
   const managedItems = [
     'SwishyLayer', 'SwishyTransition', 'SwishyTextRibbon',
@@ -2173,7 +2208,7 @@ function openProjectModal(p) {
           <input name="nextAction" value="${esc(p.nextAction || '')}" placeholder="다음에 해야 할 일">
         </label>
         <label>폴더 경로
-          <input name="folder" value="${esc(p.folder || '')}" placeholder="D:\\Projects\\...">
+          <input name="folder" value="${esc(p.folder || '')}" placeholder="개인 작업 폴더">
         </label>
       </div>`,
   }, (fd) => {
@@ -2244,7 +2279,7 @@ function openProjectCreateModal() {
           </select>
         </label>
         <label>폴더 경로
-          <input name="folder" placeholder="D:\\Projects\\seniorwisdom">
+          <input name="folder" placeholder="개인 작업 폴더">
         </label>
         <label>설명
           <textarea name="description" rows="3" placeholder="프로젝트 설명"></textarea>
