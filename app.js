@@ -5,6 +5,11 @@ const STORAGE_KEY = 'creator-hub-public-v3';
 const USER_CODEX_KEY = 'userCodexPrompts';
 const TASK_STATUSES = ['아이디어', '제작중', '검수', '업로드', '완료'];
 
+function cloneData(value) {
+  if (typeof structuredClone === 'function') return structuredClone(value);
+  return JSON.parse(JSON.stringify(value));
+}
+
 // ── 명령어 보관함 데이터 ─────────────────────
 // 새 프롬프트 추가: 이 배열에 항목을 추가하면 바로 반영됩니다.
 // data/codex_prompts.json 참고 (앱은 이 상수를 직접 사용)
@@ -850,18 +855,18 @@ const expandedContestIds = new Set();
 
 function load() {
   const saved = localStorage.getItem(STORAGE_KEY);
-  if (!saved) return structuredClone(SEED);
+  if (!saved) return cloneData(SEED);
   try {
     const parsed = JSON.parse(saved);
     // 깊은 병합: SEED 구조 보장
-    return syncSeedProjects(deepMerge(structuredClone(SEED), parsed));
-  } catch { return structuredClone(SEED); }
+    return syncSeedProjects(deepMerge(cloneData(SEED), parsed));
+  } catch { return cloneData(SEED); }
 }
 
 function syncSeedProjects(data) {
   const existing = new Set((data.projects || []).map(p => p.id));
   SEED.projects.forEach(p => {
-    if (!existing.has(p.id)) data.projects.push(structuredClone(p));
+    if (!existing.has(p.id)) data.projects.push(cloneData(p));
   });
   return data;
 }
@@ -3371,7 +3376,7 @@ function bindEvents() {
             saveUserCodexPrompts(data.userCodexPrompts);
             delete data.userCodexPrompts;
           }
-          db = deepMerge(structuredClone(SEED), data);
+          db = deepMerge(cloneData(SEED), data);
           save(); render(); toast('데이터를 가져왔습니다.');
         }
       } catch { alert('JSON 파일을 읽을 수 없습니다.'); }
